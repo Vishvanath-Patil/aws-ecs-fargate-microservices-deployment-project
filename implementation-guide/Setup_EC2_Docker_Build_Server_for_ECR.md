@@ -41,17 +41,18 @@ Expected output:
 
 # Launch an EC2 Instance
 
-  Setting          Recommended Value
-  ---------------- -----------------------------------------
-  AMI              Amazon Linux 2023 (Preferred)
-  Instance Type    t3.medium
-  Root Volume      20 GB gp3
-  VPC              Your project VPC
-  Public Subnet    Yes (or Private + SSM)
-  Public IP        Enabled (if using SSH)
-  Security Group   Allow SSH (22) only from **Your IP**
-  IAM Role         `iam-role-grant-ec2-ssm-and-ecr-access`
+Launch an Amazon EC2 instance that will be used as a dedicated Docker build server for building container images and pushing them to Amazon Elastic Container Registry (Amazon ECR).
 
+| **Setting** | **Recommended Value** |
+|-------------|-----------------------|
+| **AMI** | Amazon Linux 2023 (Recommended) |
+| **Instance Type** | t3.medium |
+| **Root Volume** | 20 GB gp3 |
+| **VPC** | Your project VPC |
+| **Subnet** | Public Subnet (or Private Subnet with AWS Systems Manager) |
+| **Auto-assign Public IP** | Enabled (only if connecting through SSH) |
+| **Security Group** | Allow SSH (TCP 22) only from **Your Public IP** |
+| **IAM Role** | `iam-role-grant-ec2-ssm-and-ecr-access` |
 ------------------------------------------------------------------------
 
 # Connect to EC2
