@@ -154,6 +154,12 @@ Enter the password.
 
 ---
 
+# Step 8: Verify Exsiting Database names
+
+```sql
+SELECT datname FROM pg_database;
+```
+
 # Step 8: Create Database
 
 ```sql
