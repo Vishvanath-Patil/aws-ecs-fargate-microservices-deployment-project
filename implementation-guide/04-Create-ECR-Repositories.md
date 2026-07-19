@@ -130,16 +130,6 @@ Example Output
 devconnect-frontend
 devconnect-backend
 ```
-
----
-
-# Repository Summary
-
-| Repository | Used By | Purpose |
-|------------|---------|---------|
-| devconnect-frontend | ECS Frontend Service | Stores Frontend container images. |
-| devconnect-backend | ECS Backend Service | Stores Backend container images. |
-
 ---
 
 # Best Practices
