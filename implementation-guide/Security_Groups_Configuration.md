@@ -1,36 +1,13 @@
-# Security Groups Configuration
+## Security Groups
 
-  ------------------------------------------------------------------------------
-  Security Group           Inbound Rule          Source           Purpose
-  ------------------------ --------------------- ---------------- --------------
-  **ALB-SG**               HTTP (TCP 80)         `0.0.0.0/0`      Allows users
-                                                                  on the
-                                                                  Internet to
-                                                                  access the
-                                                                  Application
-                                                                  Load Balancer.
+| Security Group | Direction | Protocol | Port | Source/Destination | Description |
+|----------------|-----------|----------|------|--------------------|-------------|
+| **ALB-SG** | Inbound | TCP | 80 | `0.0.0.0/0` | Allow HTTP traffic from the Internet to the Application Load Balancer. |
+| **Frontend-SG** | Inbound | TCP | 80 | **ALB-SG** | Allow HTTP requests only from the Application Load Balancer. |
+| **Backend-SG** | Inbound | TCP | 8000 | **ALB-SG** | Allow API requests only from the Application Load Balancer. |
+| **Database-SG** | Inbound | TCP | 5432 | **Backend-SG** | Allow PostgreSQL connections only from the Backend application. |
 
-  **Frontend-SG**          HTTP (TCP 80)         **ALB-SG**       Allows only
-                                                                  the ALB to
-                                                                  forward
-                                                                  requests to
-                                                                  the Frontend
-                                                                  application.
-
-  **Backend-SG**           TCP 8000              **ALB-SG**       Allows only
-                                                                  the ALB to
-                                                                  forward API
-                                                                  requests to
-                                                                  the Backend
-                                                                  application.
-
-  **Database-SG**          PostgreSQL (TCP 5432) **Backend-SG**   Allows only
-                                                                  the Backend
-                                                                  application to
-                                                                  connect to the
-                                                                  PostgreSQL
-                                                                  database.
-  ------------------------------------------------------------------------------
+> **Note:** Outbound rules can remain as the default (**Allow All**) unless your organization's security policy requires restricting egress traffic.
 
 ## Traffic Flow
 
