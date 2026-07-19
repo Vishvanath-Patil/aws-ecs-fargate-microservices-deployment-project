@@ -163,7 +163,7 @@ SELECT datname FROM pg_database;
 # Step 8: Create Database
 
 ```sql
-CREATE DATABASE DevConnect;
+CREATE DATABASE devconnect;
 ```
 
 Verify
