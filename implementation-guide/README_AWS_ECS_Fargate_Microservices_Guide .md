@@ -6,30 +6,12 @@ This guide explains how to deploy a production-ready microservices application o
 
 ### Architecture
 
-```text
-Internet
-    │
-    ▼
-Application Load Balancer (Public Subnets)
-    │
-    ├── /api/auth  ─► Auth Service
-    ├── /api/user  ─► User Service
-    ├── /api/post  ─► Post Service
-    └── /api/like  ─► Like Service
-                        │
-                  ECS Fargate Tasks
-                  (Private Subnets)
-                        │
-                 PostgreSQL RDS
-                 (Private Subnets)
+#### Microservices
+<img width="2392" height="668" alt="image" src="https://github.com/user-attachments/assets/55664066-b41e-4809-a4d5-8192dbd66189" />
 
-Supporting Services
-- Amazon ECR
-- AWS Secrets Manager
-- CloudWatch Logs
-- Amazon S3
-- VPC Endpoints
-```
+#### Infra Architechture
+<img width="767" height="842" alt="image" src="https://github.com/user-attachments/assets/8fc55c51-b19d-461c-95d2-1c000dde6366" />
+
 
 # Prerequisites
 
