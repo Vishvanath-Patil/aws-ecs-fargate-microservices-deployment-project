@@ -1,0 +1,288 @@
+:root {
+  --ink: #17212b;
+  --muted: #64748b;
+  --line: #d9e2ec;
+  --paper: #f8fafc;
+  --white: #ffffff;
+  --teal: #0f766e;
+  --coral: #e85d4f;
+  --gold: #d99b28;
+  --blue: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 320px;
+  padding: 56px clamp(20px, 5vw, 72px) 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 32px;
+  align-items: end;
+  color: #fff;
+  background:
+    linear-gradient(120deg, rgba(23, 33, 43, 0.92), rgba(15, 118, 110, 0.78)),
+    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80") center/cover;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #99f6e4;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.92;
+}
+
+.hero-copy {
+  max-width: 680px;
+  margin: 24px 0 0;
+  color: #dbeafe;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.service-pill,
+.panel,
+.composer,
+.post {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 55px rgba(23, 33, 43, 0.09);
+}
+
+.service-pill {
+  min-height: 86px;
+  padding: 16px;
+  color: var(--ink);
+}
+
+.service-pill span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr) 300px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.panel {
+  padding: 18px;
+  align-self: start;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.tab,
+button,
+select {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 42px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.tab.active,
+.primary {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #fff;
+  font-weight: 800;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+  color: var(--ink);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  min-height: 24px;
+  color: var(--coral);
+  font-size: 0.9rem;
+}
+
+.profile-card,
+.person {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.profile-card {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.profile-card span,
+.person span,
+.post-meta {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 900;
+}
+
+.composer {
+  padding: 18px;
+}
+
+.composer-actions {
+  display: grid;
+  grid-template-columns: 180px 120px;
+  gap: 10px;
+  justify-content: end;
+}
+
+.feed-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.post {
+  padding: 18px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tag {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff3cd;
+  color: #7c4f00;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.post p {
+  line-height: 1.6;
+  margin: 14px 0;
+}
+
+.like-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.like-button {
+  min-width: 92px;
+  color: var(--coral);
+  font-weight: 800;
+}
+
+.people h2 {
+  margin: 0 0 16px;
+}
+
+#peopleList {
+  display: grid;
+  gap: 14px;
+}
+
+@media (max-width: 1050px) {
+  .hero,
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 38px 18px 24px;
+  }
+
+  .status-grid,
+  .composer-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace {
+    padding: 12px;
+  }
+}

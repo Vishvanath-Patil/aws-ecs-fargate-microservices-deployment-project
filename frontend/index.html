@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevConnect Lite</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Microservices social workspace</p>
+          <h1>DevConnect Lite</h1>
+          <p class="hero-copy">A polished local web app with auth, profiles, posts, likes, Postgres, Docker Compose, and an ECS deployment path.</p>
+        </div>
+        <div class="status-grid" id="serviceStatus"></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel auth-panel">
+          <div class="tabs">
+            <button class="tab active" data-auth-tab="login">Login</button>
+            <button class="tab" data-auth-tab="register">Register</button>
+          </div>
+          <form id="authForm">
+            <input id="username" placeholder="username" autocomplete="username" required />
+            <input id="email" class="register-only hidden" placeholder="email" type="email" autocomplete="email" />
+            <input id="password" placeholder="password" type="password" autocomplete="current-password" required />
+            <button class="primary" type="submit">Continue</button>
+          </form>
+          <p id="authMessage" class="message"></p>
+
+          <div class="profile-card">
+            <div id="avatar" class="avatar">DC</div>
+            <div>
+              <strong id="profileName">Guest builder</strong>
+              <span id="profileMeta">Sign in to save your profile</span>
+            </div>
+          </div>
+
+          <form id="profileForm" class="profile-form">
+            <input id="displayName" placeholder="Display name" />
+            <input id="title" placeholder="Role or title" />
+            <input id="location" placeholder="Location" />
+            <textarea id="bio" placeholder="Short bio"></textarea>
+            <button type="submit">Save profile</button>
+          </form>
+        </aside>
+
+        <section class="feed">
+          <form id="postForm" class="composer">
+            <textarea id="postBody" placeholder="Share a build note, deployment win, or cloud lesson..." required></textarea>
+            <div class="composer-actions">
+              <select id="tag">
+                <option>General</option>
+                <option>AWS</option>
+                <option>DevOps</option>
+                <option>Frontend</option>
+                <option>Backend</option>
+              </select>
+              <button class="primary" type="submit">Post</button>
+            </div>
+          </form>
+          <div id="feedList" class="feed-list"></div>
+        </section>
+
+        <aside class="panel people">
+          <h2>Builders</h2>
+          <div id="peopleList"></div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
