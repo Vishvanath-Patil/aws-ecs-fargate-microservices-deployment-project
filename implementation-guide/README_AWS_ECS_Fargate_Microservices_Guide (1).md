@@ -1,7 +1,5 @@
 # Production-Ready Microservices on AWS ECS Fargate
 
-> **Reference Video:** https://youtu.be/OGAKPr_UfB0?si=K5-TljTg9p1aBFtz
-
 ## Overview
 
 This guide explains how to deploy a production-ready microservices application on **AWS ECS Fargate** using a secure AWS architecture.
