@@ -1,4 +1,4 @@
-# DevConnect Lite
+# ConnectHub Lite
 
 A local microservices web app with one frontend, four backend services, and Postgres. It is designed so you can test it locally with Docker Compose and then push the same containers to AWS ECS Fargate.
 
