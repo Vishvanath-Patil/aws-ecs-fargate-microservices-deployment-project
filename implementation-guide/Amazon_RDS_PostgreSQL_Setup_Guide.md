@@ -157,7 +157,7 @@ Enter the password.
 # Step 8: Create Database
 
 ```sql
-CREATE DATABASE ecommerce;
+CREATE DATABASE DevConnect;
 ```
 
 Verify
@@ -169,62 +169,8 @@ Verify
 Switch
 
 ```sql
-\c ecommerce
+\c DevConnect
 ```
-
----
-
-# Step 9: Create Application User
-
-```sql
-CREATE USER appuser WITH PASSWORD 'StrongPassword123!';
-GRANT ALL PRIVILEGES ON DATABASE ecommerce TO appuser;
-```
-
----
-
-# Step 10: Create Sample Table
-
-```sql
-CREATE TABLE products(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    price NUMERIC(10,2),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-Insert data
-
-```sql
-INSERT INTO products(name,price)
-VALUES
-('Laptop',55000),
-('Keyboard',1200),
-('Mouse',800);
-```
-
-Verify
-
-```sql
-SELECT * FROM products;
-```
-
----
-
-# Step 11: Update Backend Configuration
-
-Example connection string
-
-```text
-Host=project-postgres-db.xxxxxxxxx.ap-south-1.rds.amazonaws.com
-Port=5432
-Database=ecommerce
-Username=appuser
-Password=<password>
-```
-
----
 
 # Security Best Practices
 
