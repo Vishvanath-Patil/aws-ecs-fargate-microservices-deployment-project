@@ -131,76 +131,220 @@ docker ps
 ```
 
 ------------------------------------------------------------------------
+# Build and Push Docker Images to Amazon ECR
 
-# Login to Amazon ECR
+## Overview
 
-Replace placeholders:
+This guide explains how to:
 
-``` bash
-AWS_REGION=ap-southeast-1
-ACCOUNT_ID=<AWS_ACCOUNT_ID>
-REPOSITORY=<ECR_REPOSITORY_NAME>
+- Clone the **DevConnect** source code
+- Verify all microservices locally using Docker Compose
+- Build Docker images for each microservice
+- Create Amazon ECR repositories
+- Authenticate Docker with Amazon ECR
+- Tag and push images
+- Verify uploaded images in AWS
+
+---
+
+# Services
+
+| Service | Amazon ECR Repository |
+|----------|-----------------------|
+| auth-service | devconnect-auth-service |
+| frontend | devconnect-frontend |
+| like-service | devconnect-like-service |
+| post-service | devconnect-post-service |
+| user-service | devconnect-user-service |
+
+---
+
+# Step 1 – Log in to the Docker Build Server
+
+Connect to your EC2 instance (Docker build server).
+
+Verify Docker:
+
+```bash
+docker --version
+docker compose version
 ```
 
-Login:
+---
 
-``` bash
-aws ecr get-login-password --region $AWS_REGION \
+# Step 2 – Clone the Repository
+
+```bash
+git clone https://github.com/Vishvanath-Patil/aws-ecs-fargate-microservices-deployment-project.git
+```
+
+Navigate to the project:
+
+```bash
+cd aws-ecs-fargate-microservices-deployment-project
+```
+
+---
+
+# Step 3 – Verify the Application Locally
+
+Start all services:
+
+```bash
+docker compose up -d
+```
+
+Open your browser and verify the application is running correctly.
+
+Once verified, stop the application:
+
+```bash
+docker compose down
+```
+
+---
+
+# Step 4 – Create Amazon ECR Repositories for Each Service
+
+Create the following **Private** repositories in Amazon ECR.
+
+| Repository Name |
+|-----------------|
+| devconnect-auth-service |
+| devconnect-frontend |
+| devconnect-like-service |
+| devconnect-post-service |
+| devconnect-user-service |
+
+Enable:
+
+- Scan on Push
+- AES-256 Encryption
+- Mutable Tags
+
+---
+
+# Step 5 – Authenticate Docker to Amazon ECR
+
+Replace `<ACCOUNT_ID>` and `<REGION>`.
+
+```bash
+aws ecr get-login-password --region <REGION> \
 | docker login \
 --username AWS \
---password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+--password-stdin <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com
 ```
 
-Expected:
+Expected Output:
 
-``` text
+```text
 Login Succeeded
 ```
 
-------------------------------------------------------------------------
+---
 
-# Clone Your Application
+# Step 6 – Build Docker Images
 
-``` bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd <PROJECT_DIRECTORY>
+## 1. auth-service
+
+```bash
+cd auth-service
+
+docker build -t devconnect-auth-service:latest .
 ```
 
-------------------------------------------------------------------------
+---
 
-# Build Docker Image
+## 2. frontend
 
-``` bash
-docker build -t $REPOSITORY:latest .
+```bash
+cd ../frontend
+
+docker build -t devconnect-frontend:latest .
 ```
 
-Verify:
+---
 
-``` bash
-docker images
+## 3. like-service
+
+```bash
+cd ../like-service
+
+docker build -t devconnect-like-service:latest .
 ```
 
-------------------------------------------------------------------------
+---
 
-# Tag Image
+## 4. post-service
 
-``` bash
-docker tag $REPOSITORY:latest \
-$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPOSITORY:latest
+```bash
+cd ../post-service
+
+docker build -t devconnect-post-service:latest .
 ```
 
-------------------------------------------------------------------------
+---
 
-# Push Image to Amazon ECR
+## 5. user-service
 
-``` bash
-docker push \
-$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPOSITORY:latest
+```bash
+cd ../user-service
+
+docker build -t devconnect-user-service:latest .
 ```
 
-Verify:
+---
 
-AWS Console → Amazon ECR → Repository → Images
+# Step 7 – Tag Docker Images
 
-------------------------------------------------------------------------
+Replace `<ACCOUNT_ID>` and `<REGION>`.
+
+```bash
+docker tag devconnect-auth-service:latest <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-auth-service:latest
+
+docker tag devconnect-frontend:latest <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-frontend:latest
+
+docker tag devconnect-like-service:latest <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-like-service:latest
+
+docker tag devconnect-post-service:latest <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-post-service:latest
+
+docker tag devconnect-user-service:latest <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-user-service:latest
+```
+
+---
+
+# Step 8 – Push Images to Amazon ECR
+
+```bash
+docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-auth-service:latest
+
+docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-frontend:latest
+
+docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-like-service:latest
+
+docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-post-service:latest
+
+docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/devconnect-user-service:latest
+```
+
+---
+
+# Step 9 – Verify Images in Amazon ECR
+
+Open:
+
+**AWS Console → Amazon ECR → Repositories**
+
+Verify that each repository contains the `latest` image.
+
+| Repository | Expected Image Tag |
+|------------|--------------------|
+| devconnect-auth-service | latest |
+| devconnect-frontend | latest |
+| devconnect-like-service | latest |
+| devconnect-post-service | latest |
+| devconnect-user-service | latest |
+
+---
+
 
