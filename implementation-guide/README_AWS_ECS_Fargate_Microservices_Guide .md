@@ -11,7 +11,8 @@ This guide explains how to deploy a production-ready microservices application o
 
 
 #### Infra Architechture
-<img width="767" height="842" alt="image" src="https://github.com/user-attachments/assets/8fc55c51-b19d-461c-95d2-1c000dde6366" />
+<img width="1181" height="1331" alt="image" src="https://github.com/user-attachments/assets/29ff9b0d-11af-4b26-aacc-e96d0b499efb" />
+
 
 
 # Prerequisites
