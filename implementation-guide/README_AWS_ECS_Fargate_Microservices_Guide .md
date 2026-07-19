@@ -7,7 +7,8 @@ This guide explains how to deploy a production-ready microservices application o
 ### Architecture
 
 #### Microservices
-<img width="2392" height="668" alt="image" src="https://github.com/user-attachments/assets/55664066-b41e-4809-a4d5-8192dbd66189" />
+<img width="1536" height="1024" alt="ChatGPT Image Jul 19, 2026, 12_31_27 PM" src="https://github.com/user-attachments/assets/c4509513-1197-4fe7-be2d-a0bf86c67727" />
+
 
 #### Infra Architechture
 <img width="767" height="842" alt="image" src="https://github.com/user-attachments/assets/8fc55c51-b19d-461c-95d2-1c000dde6366" />
