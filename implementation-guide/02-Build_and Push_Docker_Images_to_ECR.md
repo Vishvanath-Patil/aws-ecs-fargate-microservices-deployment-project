@@ -1,4 +1,4 @@
-# Launch an EC2 Docker Build Server for Amazon ECR
+# 02-Launch an EC2 Docker Build Server for Amazon ECR
 
 ## Objective
 
