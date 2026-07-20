@@ -1,4 +1,4 @@
-# 08 - Amazon ECS Fargate Deployment Guide for DevConnect (Detailed)
+# Amazon ECS Cluster Creation, Task Definition, ECS Service
 
 # Overview
 
