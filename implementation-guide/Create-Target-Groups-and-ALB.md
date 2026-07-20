@@ -1,4 +1,4 @@
-# 06 - Create Target Groups and Application Load Balancer (ALB)
+# Create Target Groups and Application Load Balancer (ALB)
 
 ## Overview
 
