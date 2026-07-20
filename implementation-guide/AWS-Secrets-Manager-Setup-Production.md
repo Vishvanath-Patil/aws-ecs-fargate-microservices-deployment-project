@@ -1,4 +1,4 @@
-# 07 - AWS Secrets Manager Setup for DevConnect (Production)
+# AWS Secrets Manager Setup for DevConnect (Production)
 
 ## Overview
 
