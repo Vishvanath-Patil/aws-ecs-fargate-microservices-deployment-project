@@ -1,4 +1,4 @@
-# Amazon RDS PostgreSQL Setup Guide (Private Subnets)
+# 03-Amazon RDS PostgreSQL Setup Guide (Private Subnets)
 
 ## Architecture
 
