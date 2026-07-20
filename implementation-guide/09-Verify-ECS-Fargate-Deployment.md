@@ -1,4 +1,4 @@
-# 09 - Verify Amazon ECS Fargate Deployment for DevConnect
+# Verify Amazon ECS Fargate Deployment for DevConnect
 
 # Overview
 
