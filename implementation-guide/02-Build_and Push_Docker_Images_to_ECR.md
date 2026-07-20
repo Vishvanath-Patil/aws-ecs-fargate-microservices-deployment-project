@@ -167,15 +167,6 @@ Verify Docker:
 
 ```bash
 docker --version
-
-sudo mkdir -p /usr/local/lib/docker/cli-plugins
-
-sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
--o /usr/local/lib/docker/cli-plugins/docker-compose
-
-sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
-
-docker compose version
 ```
 
 ---
@@ -201,6 +192,117 @@ Start all services:
 ```bash
 docker compose up -d
 ```
+# Install Docker Buildx on Amazon Linux 2023
+
+This guide installs the Docker Buildx CLI plugin required by Docker
+Compose to build images.
+
+## Problem
+
+Running:
+
+``` bash
+docker compose up -d
+```
+
+returns:
+
+``` text
+compose build requires buildx 0.17.0 or later
+```
+
+or:
+
+``` bash
+docker buildx version
+```
+
+returns:
+
+``` text
+docker: 'buildx' is not a docker command.
+```
+
+------------------------------------------------------------------------
+
+## Step 1: Create the Docker CLI plugin directory
+
+``` bash
+mkdir -p ~/.docker/cli-plugins
+```
+
+------------------------------------------------------------------------
+
+## Step 2: Download Docker Buildx
+
+``` bash
+curl -L \
+https://github.com/docker/buildx/releases/download/v0.35.0/buildx-v0.35.0.linux-amd64 \
+-o ~/.docker/cli-plugins/docker-buildx
+```
+
+------------------------------------------------------------------------
+
+## Step 3: Make the plugin executable
+
+``` bash
+chmod +x ~/.docker/cli-plugins/docker-buildx
+```
+
+------------------------------------------------------------------------
+
+## Step 4: Verify the installation
+
+Check that the binary exists:
+
+``` bash
+ls -lh ~/.docker/cli-plugins/docker-buildx
+```
+
+Expected size: approximately **20--40 MB**.
+
+Verify Buildx:
+
+``` bash
+docker buildx version
+```
+
+Example output:
+
+``` text
+github.com/docker/buildx v0.35.0
+```
+
+------------------------------------------------------------------------
+
+## Step 5: Verify available builders
+
+``` bash
+docker buildx ls
+```
+
+If no builder exists, create one:
+
+``` bash
+docker buildx create --name mybuilder --use
+docker buildx inspect --bootstrap
+```
+
+Verify again:
+
+``` bash
+docker buildx ls
+```
+
+------------------------------------------------------------------------
+
+## Step 6: Run Docker Compose
+
+``` bash
+docker compose up -d
+```
+
+------------------------------------------------------------------------
 
 Open your browser and verify the application is running correctly.
 
