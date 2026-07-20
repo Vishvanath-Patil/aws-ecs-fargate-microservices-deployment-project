@@ -1,4 +1,4 @@
-# 🏗️ AWS Network Infrastructure Plan
+# 01 AWS Network Infrastructure Plan
 
 ## 📌 VPC
 
